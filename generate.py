@@ -3,6 +3,7 @@ import platform
 import time
 import os
 try:
+        import requests
         from colorama import init, Fore
 except ModuleNotFoundError:
         if platform.system() == "Windows":
@@ -34,6 +35,16 @@ def magic(numbers):
                 f.write(y)
                 f.write("\n")
         f.close()
+        with open("Codes.txt") as f:
+                for line in f:
+                        nitro = line.strip("\n")
+                        url = "https://discordapp.com/api/v6/entitlements/gift-codes/" + nitro + "?with_application=false&with_subscription_plan=true"
+                        r = requests.get(url)
+                        if r.status_code == 200:
+                                print("{GREEN}Checked: {RED}{}".format(line.strip("\n")))
+                                break
+                        else:
+                                print("Unchecked: {}".format(line.strip("\n")))
 def home():
         while True:
                 init(autoreset=False)
@@ -49,13 +60,13 @@ def home():
                                 numbers = int(input("\nIngrese cuantos quieres generar >>> "))
                                 print()
                                 time.sleep(1)
-                                magic(numbers)
                         except:
                                 print(f"'\n{GREEN}Ha ocurrido un {RED}error{GREEN}, lo lamentamos...")
                                 print(f"\nVuelva a ejecutar el script...{RESET}")
                                 exit()
+                        magic(numbers)
                         print(f"\n{GREEN}Bien se han guardado: {BLUE}{numbers} codes unchecked en: {BLUE}Codes.txt{RESET}\n")
-                        print(f"\t--{YELLOW}AVISO{RESET}--\n{GREEN}Si vuelves a {RED}generar codes{GREEN}, se {RED}borraran {GREEN}los que anteriormente has usado.\n{RESET}")
+                        print(f"\t--{YELLOW}AVISO{RESET}--\n{GREEN}\nSi vuelves a {RED}generar codes{GREEN}, se {RED}borraran {GREEN}los que anteriormente has usado.\n{RESET}")
                         time.sleep(15)
                 elif peticion=="X" or peticion=="x":
                         print(f"{GREEN}Okey saliendo...")
