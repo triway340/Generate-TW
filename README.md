@@ -2,7 +2,7 @@
 
 #Home:
 
-Te genera codigos unchecked.
+Te genera codigos de Nitro unchecked.
 
 #Installing X plataforma:
 
@@ -14,4 +14,4 @@ $ python3 generate.py
 
 Ejecuta el .bat de la carpeta
 
-Y ya, todo se generara en un documento .txt
+Y ya, todo se guardara en un documento .txt
